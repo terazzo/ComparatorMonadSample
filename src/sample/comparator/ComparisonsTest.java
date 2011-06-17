@@ -144,8 +144,10 @@ public class ComparisonsTest {
 
     @Test
     public void testMonad3() {
-        ProcessStatus<ComparisonResult, ProcessStatus<ComparisonResult, ProcessStatus<ComparisonResult, Comparatee<String>>>>
-        sss = unsettled(unsettled(Comparisons.unsettled("left", "right")));
+        ProcessStatus<ComparisonResult,
+            ProcessStatus<ComparisonResult,
+                ProcessStatus<ComparisonResult, Comparatee<String>>>>
+            sss = unsettled(unsettled(Comparisons.unsettled("left", "right")));
 
         // ƒ‚ƒiƒh‘¥(3) flatten(flatten(mmm)) = flatten(map(flatten, mmm))
         assertEquals(
@@ -159,15 +161,22 @@ public class ComparisonsTest {
     @Test
     public void testFlattenWhenOutsideIsUnsettle() {
         ProcessStatus<ComparisonResult, ProcessStatus<ComparisonResult, Comparatee<String>>>
-        inner = unsettled(Comparisons.unsettled("left", "right"));
-        ProcessStatus<ComparisonResult, ProcessStatus<ComparisonResult, ProcessStatus<ComparisonResult, Comparatee<String>>>>
-        outer = unsettled(inner);
+            inner = unsettled(Comparisons.unsettled("left", "right"));
+
+        ProcessStatus<ComparisonResult,
+            ProcessStatus<ComparisonResult,
+                ProcessStatus<ComparisonResult, Comparatee<String>>>>
+            outer = unsettled(inner);
+
         assertEquals(inner, flatten(outer));
     }   
     @Test
     public void testFlattenWhenOutsideIsSettle() {
-        ProcessStatus<ComparisonResult, ProcessStatus<ComparisonResult, ProcessStatus<ComparisonResult, Comparatee<String>>>>
-        outer = settled(ComparisonResult.SMALLER);
+        ProcessStatus<ComparisonResult,
+            ProcessStatus<ComparisonResult,
+                ProcessStatus<ComparisonResult, Comparatee<String>>>>
+            outer = settled(ComparisonResult.SMALLER);
+
         assertEquals(outer, flatten(outer));
     }   
 

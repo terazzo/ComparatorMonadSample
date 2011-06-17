@@ -11,7 +11,7 @@ import com.google.common.base.Function;
  * 確定状態の場合、bind() or map()で渡された関数はバイパスして、resultを最終結果とする。
  * EitherをもとにしたErrorモナドと同じような動きになる。(決着済み=Left、未決着=Right)
  * 
- * @param <R> 戻り値の型
+ * @param <R> 処理結果の型
  * @param <T> 処理対象(引数)の型
  */
 public final class ProcessStatus<R, T> {
