@@ -151,8 +151,8 @@ public class ComparisonsTest {
 
         // ƒ‚ƒiƒh‘¥(3) flatten(flatten(mmm)) = flatten(map(flatten, mmm))
         assertEquals(
-                flatten(ProcessStatus.flatten(sss)),
-                flatten(ProcessStatus.map(Comparisons.<Comparatee<String>>flatten(), sss)));
+                flatten(flatten(sss)),
+                flatten(map(Comparisons.<Comparatee<String>>flatten(), sss)));
 
         System.out.println("sss = " + sss);
         System.out.println("flatten(flatten(sss)) = " + flatten(ProcessStatus.flatten(sss)));
