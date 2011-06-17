@@ -114,8 +114,8 @@ public final class ProcessStatus<R, T> {
 
     /* 代数スタイルを拡張スタイルで定義 */
     // flatten = bind(id) = bind(ext(unit))
-    public static <R, T> ProcessStatus<R, T> flatten(ProcessStatus<R, ProcessStatus<R, T>> cc) {
-        return bind(cc, ext(ProcessStatus.<R, T>unit()));
+    public static <R, T> ProcessStatus<R, T> flatten(ProcessStatus<R, ProcessStatus<R, T>> ss) {
+        return bind(ss, ext(ProcessStatus.<R, T>unit()));
     }
     // map(f, m) = bind(m, ( \x -> unit (f x) ))
     public static <R, T, S> ProcessStatus<R, S> map(final Function<T, S> f, ProcessStatus<R, T> status) {
