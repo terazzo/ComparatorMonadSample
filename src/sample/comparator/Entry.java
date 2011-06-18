@@ -10,7 +10,7 @@ public class Entry {
     private final Date pubDate;
     public Entry(Integer id, Integer weblogId, Date pubDate,
             String title, String content) {
-        // null‚Í‹–‰Â‚µ‚È‚¢•ûŒü‚ÅB
+        // nullã¯è¨±å¯ã—ãªã„æ–¹å‘ã§ã€‚
         if (id == null || pubDate == null) {
             throw new IllegalArgumentException("id or pubDate is null");
         }

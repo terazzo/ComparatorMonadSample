@@ -1,23 +1,23 @@
 package sample.comparator;
 
 /**
- * ”äŠrŒ‹‰Ê‚ð‚ ‚ç‚í‚·Enum
+ * æ¯”è¼ƒçµæžœã‚’ã‚ã‚‰ã‚ã™Enum
  */
 public enum ComparisonResult {
-    // u¶‘¤‚ª¬‚³‚¢v‚Æ‚¢‚¤Œ‹‰Ê
+    // ã€Œå·¦å´ãŒå°ã•ã„ã€ã¨ã„ã†çµæžœ
     SMALLER(-1),
-    // u¶‘¤‚Æ‰E‘¤‚ª“™‚µ‚¢v‚Æ‚¢‚¤Œ‹‰Ê
+    // ã€Œå·¦å´ã¨å³å´ãŒç­‰ã—ã„ã€ã¨ã„ã†çµæžœ
     IDENTICAL(0),
-    // u¶‘¤‚ª‘å‚«‚¢v‚Æ‚¢‚¤Œ‹‰Ê
+    // ã€Œå·¦å´ãŒå¤§ãã„ã€ã¨ã„ã†çµæžœ
     LARGER(1);
 
-    // ”äŠrŒ‹‰Ê‚ð•‰‚Ì”Aƒ[ƒA³‚Ì”‚Å•\‚µ‚½‚à‚Ì
+    // æ¯”è¼ƒçµæžœã‚’è² ã®æ•°ã€ã‚¼ãƒ­ã€æ­£ã®æ•°ã§è¡¨ã—ãŸã‚‚ã®
     public final int sign;
 
     ComparisonResult(int sign) {
         this.sign = sign;
     }
-    // Comparable‚âComparator‚Æ‹¦“¯‚µ‚â‚·‚¢‚æ‚¤‚É•ÏŠ·ƒƒ\ƒbƒh‚ð’è‹`
+    // Comparableã‚„Comparatorã¨å”åŒã—ã‚„ã™ã„ã‚ˆã†ã«å¤‰æ›ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®šç¾©
     public static ComparisonResult valueOf(int sign) {
         return sign < 0 ? SMALLER
              : sign > 0 ? LARGER

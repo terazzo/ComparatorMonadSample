@@ -5,8 +5,8 @@ import java.util.Comparator;
 import com.google.common.base.Function;
 
 /**
- * ProcessStatus‚Ébind‚µ‚Ä”äŠrğŒ‚ğƒ`ƒF[ƒ“‚Å‚«‚é‚æ‚¤‚É‚·‚éˆ×‚ÌƒRƒ“ƒpƒŒ[ƒ^ƒNƒ‰ƒXB
- * @param <T>@”äŠr‚·‚é•¨“¯m‚ÌŒ^
+ * ProcessStatusã«bindã—ã¦æ¯”è¼ƒæ¡ä»¶ã‚’ãƒã‚§ãƒ¼ãƒ³ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹ç‚ºã®ã‚³ãƒ³ãƒ‘ãƒ¬ãƒ¼ã‚¿ã‚¯ãƒ©ã‚¹ã€‚
+ * @param <T>ã€€æ¯”è¼ƒã™ã‚‹ç‰©åŒå£«ã®å‹
  */
 public abstract class MComparator<T> implements Function<Comparatee<T>, ProcessStatus<ComparisonResult, Comparatee<T>>> {
     public ProcessStatus<ComparisonResult, Comparatee<T>> apply(

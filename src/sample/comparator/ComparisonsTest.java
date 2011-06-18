@@ -22,21 +22,21 @@ public class ComparisonsTest {
     public void initSamples() throws Exception {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
         entries = Arrays.asList(
-            new Entry(6, 2, fmt.parse("2011-03-03"), "iPad2—~‚µ‚¢‚Å‚·‚©H","..."),
-            new Entry(5, 2, fmt.parse("2011-01-06"), "¡”N‚Ì•ø•‰","..."),
-            new Entry(4, 2, fmt.parse("2011-03-10"), "ƒuƒƒO‚Æ„","..."),
-            new Entry(3, 2, fmt.parse("2011-02-18"), "‚±‚ê‚Íƒ‚ƒiƒh‚Å‚·‚©H","..."),
-            new Entry(2, 2, fmt.parse("2011-02-18"), "‚Â‚¢‚Â‚¢W‚ß‚Ä‚µ‚Ü‚¤‚à‚Ì","..."),
-            new Entry(1, 1, fmt.parse("2011-02-18"), "‚Â‚¢‚Â‚¢W‚ß‚Ä‚µ‚Ü‚¤‚à‚Ì","..."));
+            new Entry(6, 2, fmt.parse("2011-03-03"), "iPad2æ¬²ã—ã„ã§ã™ã‹ï¼Ÿ","..."),
+            new Entry(5, 2, fmt.parse("2011-01-06"), "ä»Šå¹´ã®æŠ±è² ","..."),
+            new Entry(4, 2, fmt.parse("2011-03-10"), "ãƒ–ãƒ­ã‚°ã¨ç§","..."),
+            new Entry(3, 2, fmt.parse("2011-02-18"), "ã“ã‚Œã¯ãƒ¢ãƒŠãƒ‰ã§ã™ã‹ï¼Ÿ","..."),
+            new Entry(2, 2, fmt.parse("2011-02-18"), "ã¤ã„ã¤ã„é›†ã‚ã¦ã—ã¾ã†ã‚‚ã®","..."),
+            new Entry(1, 1, fmt.parse("2011-02-18"), "ã¤ã„ã¤ã„é›†ã‚ã¦ã—ã¾ã†ã‚‚ã®","..."));
     }
-    // pubDate‚Ì~‡‚Åƒ\[ƒg‚·‚é‚ÌƒRƒ“ƒpƒŒ[ƒ^
+    // pubDateã®é™é †ã§ã‚½ãƒ¼ãƒˆã™ã‚‹æ™‚ã®ã‚³ãƒ³ãƒ‘ãƒ¬ãƒ¼ã‚¿
     private MComparator<Entry> pubDateComparator = toMComparator(
         new Comparator<Entry>(){
             public int compare(Entry first, Entry second) {
                 return -1 * first.getPubDate().compareTo(second.getPubDate());
             }
         });
-    // id‚Ì¸‡‚Åƒ\[ƒg‚·‚é‚ÌƒRƒ“ƒpƒŒ[ƒ^
+    // idã®æ˜‡é †ã§ã‚½ãƒ¼ãƒˆã™ã‚‹æ™‚ã®ã‚³ãƒ³ãƒ‘ãƒ¬ãƒ¼ã‚¿
     private MComparator<Entry> idComparator = toMComparator(
         new Comparator<Entry>(){
            public int compare(Entry first, Entry second) {
@@ -46,7 +46,7 @@ public class ComparisonsTest {
 
     @Test
     public void testComparison() {
-        //(1)pubDate‚Ì~‡A(2)id‚Ì¸‡A‚Æ‚¢‚¤‡˜‚Åƒ\[ƒg‚·‚é‚ÌComparator
+        //(1)pubDateã®é™é †ã€(2)idã®æ˜‡é †ã€ã¨ã„ã†é †åºã§ã‚½ãƒ¼ãƒˆã™ã‚‹æ™‚ã®Comparator
         Comparator<Entry> composedComparator = toComparator(new MComparator<Entry>() {
             protected ProcessStatus<ComparisonResult, Comparatee<Entry>> compare(Entry left, Entry right) {
                 return
@@ -59,14 +59,14 @@ public class ComparisonsTest {
         ArrayList<Entry> sorted = new ArrayList<Entry>(entries);
         Collections.sort(sorted, composedComparator);
 
-        // ‡”Ô‚É‚È‚Á‚Ä‚¢‚é‚©Šm”FBˆê‚Â‘O‚Æ”ä‚×‚é‚ÆA“ú•t‚ªŒÃ‚¢(before)‚©A“ú•t‚ª“™‚µ‚¢‚È‚çID‚ª‘å‚«‚¢‚Í‚¸B
+        // é †ç•ªã«ãªã£ã¦ã„ã‚‹ã‹ç¢ºèªã€‚ä¸€ã¤å‰ã¨æ¯”ã¹ã‚‹ã¨ã€æ—¥ä»˜ãŒå¤ã„(before)ã‹ã€æ—¥ä»˜ãŒç­‰ã—ã„ãªã‚‰IDãŒå¤§ãã„ã¯ãšã€‚
         Entry last = null;
         for (Entry entry : sorted) {
             assertTrue(
                 last == null ||
-                entry.getPubDate().before(last.getPubDate()) ||     // ˆê‚Â‘O‚æ‚è“ú•t‚ªŒÃ‚¢‚©A
+                entry.getPubDate().before(last.getPubDate()) ||     // ä¸€ã¤å‰ã‚ˆã‚Šæ—¥ä»˜ãŒå¤ã„ã‹ã€
                 (last.getPubDate().equals(entry.getPubDate()) &&
-                        entry.getId() > last.getId())           // “ú•t‚ª“™‚µ‚­ID‚ª‘å‚«‚¢
+                        entry.getId() > last.getId())           // æ—¥ä»˜ãŒç­‰ã—ãIDãŒå¤§ãã„
             );
             last = entry;
             System.out.printf("id=%d, pubDate = %s, title=%s\n",
@@ -74,7 +74,7 @@ public class ComparisonsTest {
         }
     }
 
-    // ‚»‚Ì1.u(return x) >>= f ß f xv
+    // ãã®1.ã€Œ(return x) >>= f â‰¡ f xã€
     @Test
     public void testRule1() {
         for (Entry left : entries) {
@@ -86,7 +86,7 @@ public class ComparisonsTest {
             }
         }
     }
-    // ‚»‚Ì2. um >>= return ß mv
+    // ãã®2. ã€Œm >>= return â‰¡ mã€
     @Test
     public void testRule2() {
         for (Entry left : entries) {
@@ -100,7 +100,7 @@ public class ComparisonsTest {
             }
         }
     }
-    // ‚»‚Ì3. u(m >>= f) >>= g ß m >>= ( \x -> (f x >>= g) )v
+    // ãã®3. ã€Œ(m >>= f) >>= g â‰¡ m >>= ( \x -> (f x >>= g) )ã€
     @Test
     public void testRule3() {
         for (Entry left : entries) {
@@ -120,13 +120,13 @@ public class ComparisonsTest {
     }
 
 
-    // ‘ã”ƒXƒ^ƒCƒ‹‚Ìƒ‚ƒiƒh‘¥
+    // ä»£æ•°ã‚¹ã‚¿ã‚¤ãƒ«ã®ãƒ¢ãƒŠãƒ‰å‰‡
     @Test
     public void testMonad1() {
         ProcessStatus<ComparisonResult, Comparatee<String>> status =
                 unsettled("left", "right");
 
-        // ƒ‚ƒiƒh‘¥(1) flatten(unit(m)) = m
+        // ãƒ¢ãƒŠãƒ‰å‰‡(1) flatten(unit(m)) = m
         assertEquals(
                 flatten(unit(status)),
                 status);
@@ -136,7 +136,7 @@ public class ComparisonsTest {
         ProcessStatus<ComparisonResult, Comparatee<String>> status = 
                 unsettled("left", "right");
 
-        // ƒ‚ƒiƒh‘¥(2) flatten(map(unit, m)) = m
+        // ãƒ¢ãƒŠãƒ‰å‰‡(2) flatten(map(unit, m)) = m
         assertEquals(
                 flatten(map(Comparisons.<Comparatee<String>>unit(), status)),
                 status);
@@ -149,7 +149,7 @@ public class ComparisonsTest {
                 ProcessStatus<ComparisonResult, Comparatee<String>>>>
             sss = unsettled(unsettled(Comparisons.unsettled("left", "right")));
 
-        // ƒ‚ƒiƒh‘¥(3) flatten(flatten(mmm)) = flatten(map(flatten, mmm))
+        // ãƒ¢ãƒŠãƒ‰å‰‡(3) flatten(flatten(mmm)) = flatten(map(flatten, mmm))
         assertEquals(
                 flatten(flatten(sss)),
                 flatten(map(Comparisons.<Comparatee<String>>flatten(), sss)));

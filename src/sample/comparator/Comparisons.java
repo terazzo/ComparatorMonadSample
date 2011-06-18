@@ -4,11 +4,11 @@ import com.google.common.base.Function;
 
 public class Comparisons {
 
-    // Œˆ’…ó‘Ô‚ğ¶¬‚µ‚Ä–ß‚·(Œ^ŒÅ’è”Å)
+    // æ±ºç€çŠ¶æ…‹ã‚’ç”Ÿæˆã—ã¦æˆ»ã™(å‹å›ºå®šç‰ˆ)
     public static <T> ProcessStatus<ComparisonResult, T> settled(ComparisonResult result) {
         return ProcessStatus.settled(result);
     }
-    // –¢Œˆ’…ó‘Ô‚ğ¶¬‚µ‚Ä–ß‚·(Œ^ŒÅ’è”Å)
+    // æœªæ±ºç€çŠ¶æ…‹ã‚’ç”Ÿæˆã—ã¦æˆ»ã™(å‹å›ºå®šç‰ˆ)
     public static <T> ProcessStatus<ComparisonResult, T> unsettled(T target) {
         return ProcessStatus.unsettled(target);
     }
@@ -16,7 +16,7 @@ public class Comparisons {
         return ProcessStatus.unsettled(Comparatee.of(left, right));
     }
 
-    // ’PˆÊ(Œ^ŒÅ’è”Å)
+    // å˜ä½(å‹å›ºå®šç‰ˆ)
     public static <T> ProcessStatus<ComparisonResult, T> unit(T target) {
         return ProcessStatus.unit(target);
     }

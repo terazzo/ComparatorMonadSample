@@ -4,8 +4,8 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * ��r�ΏۂƂȂ�f�[�^�̑΂�ێ�����
- * @param <T> ��r�ΏۂƂȂ�f�[�^�̌^
+ * 比較対象となるデータの対を保持する
+ * @param <T> 比較対象となるデータの型
  */
 public class Comparatee<T> {
     public final T left;

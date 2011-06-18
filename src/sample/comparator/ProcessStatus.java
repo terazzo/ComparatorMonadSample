@@ -6,48 +6,48 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import com.google.common.base.Function;
 
 /**
- * Œ»İ‚Ìˆ—ó‘Ô‚ğ•\‚µAˆ—‚Ì‘±s‚ğ§Œä‚·‚é‚½‚ß‚ÌƒNƒ‰ƒXB
- * –¢Šm’èó‘Ô‚Ìê‡A•Û‚µ‚Ä‚¢‚éˆ—‘ÎÛtarget‚ğbind() or map()‚Å“n‚³‚ê‚½ŠÖ”‚É“n‚µAŒ‹‰Ê‚ğæ“¾‚·‚éB
- * Šm’èó‘Ô‚Ìê‡Abind() or map()‚Å“n‚³‚ê‚½ŠÖ”‚ÍƒoƒCƒpƒX‚µ‚ÄAresult‚ğÅIŒ‹‰Ê‚Æ‚·‚éB
- * Either‚ğ‚à‚Æ‚É‚µ‚½Errorƒ‚ƒiƒh‚Æ“¯‚¶‚æ‚¤‚È“®‚«‚É‚È‚éB(Œˆ’…Ï‚İ=LeftA–¢Œˆ’…=Right)
+ * ç¾åœ¨ã®å‡¦ç†çŠ¶æ…‹ã‚’è¡¨ã—ã€å‡¦ç†ã®ç¶šè¡Œã‚’åˆ¶å¾¡ã™ã‚‹ãŸã‚ã®ã‚¯ãƒ©ã‚¹ã€‚
+ * æœªç¢ºå®šçŠ¶æ…‹ã®å ´åˆã€ä¿æŒã—ã¦ã„ã‚‹å‡¦ç†å¯¾è±¡targetã‚’bind() or map()ã§æ¸¡ã•ã‚ŒãŸé–¢æ•°ã«æ¸¡ã—ã€çµæœã‚’å–å¾—ã™ã‚‹ã€‚
+ * ç¢ºå®šçŠ¶æ…‹ã®å ´åˆã€bind() or map()ã§æ¸¡ã•ã‚ŒãŸé–¢æ•°ã¯ãƒã‚¤ãƒ‘ã‚¹ã—ã¦ã€resultã‚’æœ€çµ‚çµæœã¨ã™ã‚‹ã€‚
+ * Eitherã‚’ã‚‚ã¨ã«ã—ãŸErrorãƒ¢ãƒŠãƒ‰ã¨åŒã˜ã‚ˆã†ãªå‹•ãã«ãªã‚‹ã€‚(æ±ºç€æ¸ˆã¿=Leftã€æœªæ±ºç€=Right)
  * 
- * @param <R> ˆ—Œ‹‰Ê‚ÌŒ^
- * @param <T> ˆ—‘ÎÛ(ˆø”)‚ÌŒ^
+ * @param <R> å‡¦ç†çµæœã®å‹
+ * @param <T> å‡¦ç†å¯¾è±¡(å¼•æ•°)ã®å‹
  */
 public final class ProcessStatus<R, T> {
-    // ˆ—‘ÎÛ
+    // å‡¦ç†å¯¾è±¡
     private final T target;
-    // ˆ—Œ‹‰Ê
+    // å‡¦ç†çµæœ
     private final R result;
-    // Œˆ’…‚ª‚Â‚¢‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+    // æ±ºç€ãŒã¤ã„ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
     private final boolean isSettled;
     
-    // ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Íƒvƒ‰ƒCƒx[ƒg
+    // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆ
     private ProcessStatus(T target, R result, boolean isSettled) {
         this.target = target;
         this.result = result;
         this.isSettled = isSettled;
     }
-    /* ƒtƒ@ƒNƒgƒŠƒƒ\ƒbƒh */
-    // Œˆ’…ó‘Ô‚ğ¶¬‚µ‚Ä–ß‚·
+    /* ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¡ã‚½ãƒƒãƒ‰ */
+    // æ±ºç€çŠ¶æ…‹ã‚’ç”Ÿæˆã—ã¦æˆ»ã™
     public static <R, T> ProcessStatus<R, T> settled(R result) {
         return new ProcessStatus<R, T>(null, result, true);
     }
-    // –¢Œˆ’…ó‘Ô‚ğ¶¬‚µ‚Ä–ß‚·
+    // æœªæ±ºç€çŠ¶æ…‹ã‚’ç”Ÿæˆã—ã¦æˆ»ã™
     public static <R, T> ProcessStatus<R, T> unsettled(T target) {
         return new ProcessStatus<R, T>(target, null, false);
     }
-    /* Œ‹‰Ê‚ğæ‚èo‚·‚½‚ß‚Ìƒƒ\ƒbƒh */
-    // Œˆ’…‚ª‚Â‚¢‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ–ß‚·
+    /* çµæœã‚’å–ã‚Šå‡ºã™ãŸã‚ã®ãƒ¡ã‚½ãƒƒãƒ‰ */
+    // æ±ºç€ãŒã¤ã„ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’æˆ»ã™
     public boolean isSettled() {
         return isSettled;
     }
-    // Œ‹‰Ê‚ªŠm’è‚µ‚Ä‚¢‚ê‚Î‚»‚Ì’l‚ğA–¢Šm’è‚È‚çdefaultValue‚ğ–ß‚·B
+    // çµæœãŒç¢ºå®šã—ã¦ã„ã‚Œã°ãã®å€¤ã‚’ã€æœªç¢ºå®šãªã‚‰defaultValueã‚’æˆ»ã™ã€‚
     public R getResult(R defaultValue) {
         return isSettled ? result : defaultValue;
     }
 
-    /* equals, hashCode, toString‚ğ“K“–‚ÉÀ‘• */
+    /* equals, hashCode, toStringã‚’é©å½“ã«å®Ÿè£… */
     @Override
     public boolean equals(Object other) {
         return EqualsBuilder.reflectionEquals(this, other);
@@ -65,9 +65,9 @@ public final class ProcessStatus<R, T> {
 
 
 
-    /* ˆÈ‰ºƒ‚ƒiƒh“I‚Èƒƒ\ƒbƒh */
+    /* ä»¥ä¸‹ãƒ¢ãƒŠãƒ‰çš„ãªãƒ¡ã‚½ãƒƒãƒ‰ */
 
-    // ’PˆÊ
+    // å˜ä½
     public static <R, T> ProcessStatus<R, T> unit(T target) {
         return unsettled(target);
     }
@@ -79,26 +79,26 @@ public final class ProcessStatus<R, T> {
         };
     }
 
-    /* Šg’£ƒXƒ^ƒCƒ‹ */
+    /* æ‹¡å¼µã‚¹ã‚¿ã‚¤ãƒ« */
     /**
-     * ProcessStatus‚ÆFunction‚©‚çProcessStatus‚ğ©‘R‚ÈŠ´‚¶‚Å–ß‚·B
-     * ‹ï‘Ì“I‚É‚ÍAŒˆ’…Ï‚İ‚Ìê‡‚ÍŠÖ”ŒÄ‚Ño‚µ‚ğs‚í‚¸this‚ğA
-     * –¢Œˆ’…‚Ìê‡‚É‚Íhandler‚Étarget‚ğ“n‚µ‚Ä“¾‚½Œ‹‰Ê‚ğ–ß‚·B
-     * @param handler bind‚·‚éŠÖ”
-     * @param <S> –ß‚è’l‚Ìtarget‚ÌŒ^
+     * ProcessStatusã¨Functionã‹ã‚‰ProcessStatusã‚’è‡ªç„¶ãªæ„Ÿã˜ã§æˆ»ã™ã€‚
+     * å…·ä½“çš„ã«ã¯ã€æ±ºç€æ¸ˆã¿ã®å ´åˆã¯é–¢æ•°å‘¼ã³å‡ºã—ã‚’è¡Œã‚ãšthisã‚’ã€
+     * æœªæ±ºç€ã®å ´åˆã«ã¯handlerã«targetã‚’æ¸¡ã—ã¦å¾—ãŸçµæœã‚’æˆ»ã™ã€‚
+     * @param handler bindã™ã‚‹é–¢æ•°
+     * @param <S> æˆ»ã‚Šå€¤ã®targetã®å‹
      */
     public <S> ProcessStatus<R, S> bind(Function<T, ProcessStatus<R, S>> handler) {
         if (isSettled) {
-            // ‚à‚¤Œˆ’…Ï‚İ‚È‚Ì‚Åcomparator‚ÉŠÖŒW‚È‚­this‚ğ–ß‚·B
-            // Java‚É‚ÍNothing‚Æ‚©–³‚¢‚Ì‚Åc”O‚¾‚ªƒLƒƒƒXƒg‚Å‚²‚Ü‚©‚·B
-            // isSettled==true‚Ì‚Í•K‚¸result==null‚È‚Ì‚Å‰½‚à–â‘è‚È‚¢‚Í‚¸B
+            // ã‚‚ã†æ±ºç€æ¸ˆã¿ãªã®ã§comparatorã«é–¢ä¿‚ãªãthisã‚’æˆ»ã™ã€‚
+            // Javaã«ã¯Nothingã¨ã‹ç„¡ã„ã®ã§æ®‹å¿µã ãŒã‚­ãƒ£ã‚¹ãƒˆã§ã”ã¾ã‹ã™ã€‚
+            // isSettled==trueã®æ™‚ã¯å¿…ãšresult==nullãªã®ã§ä½•ã‚‚å•é¡Œãªã„ã¯ãšã€‚
             return (ProcessStatus<R, S>) this;
         } else {
-            // –¢Œˆ’…‚È‚Ì‚ÅŠÖ”‚ğŒÄ‚Ño‚µ‚Ä‚»‚ÌŒ‹‰Ê‚ğg—p‚·‚éB
+            // æœªæ±ºç€ãªã®ã§é–¢æ•°ã‚’å‘¼ã³å‡ºã—ã¦ãã®çµæœã‚’ä½¿ç”¨ã™ã‚‹ã€‚
             return handler.apply(target);
         }
     }
-    // ‚»‚Ì”h¶
+    // ãã®æ´¾ç”Ÿ
     public static <R, T, S> ProcessStatus<R, S> bind(
             ProcessStatus<R, T> status, Function<T, ProcessStatus<R, S>> handler) {
         return status.bind(handler);
@@ -112,7 +112,7 @@ public final class ProcessStatus<R, T> {
         };
     }
 
-    /* ‘ã”ƒXƒ^ƒCƒ‹‚ğŠg’£ƒXƒ^ƒCƒ‹‚Å’è‹` */
+    /* ä»£æ•°ã‚¹ã‚¿ã‚¤ãƒ«ã‚’æ‹¡å¼µã‚¹ã‚¿ã‚¤ãƒ«ã§å®šç¾© */
     // flatten = bind(id) = bind(ext(unit))
     public static <R, T> ProcessStatus<R, T> flatten(ProcessStatus<R, ProcessStatus<R, T>> ss) {
         return bind(ss, ext(ProcessStatus.<R, T>unit()));
